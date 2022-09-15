@@ -59,7 +59,7 @@ const CartContainer = () => {
         </motion.p>
       </div>
 
-      {/* bottom section */}
+      {/* bottom section  */}
       {cartItems && cartItems.length > 0 ? (
         <div className="w-full h-100 bg-cartBg rounded-t-[2rem] flex flex-col">
           {/* cart Items section */}
