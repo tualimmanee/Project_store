@@ -9,7 +9,7 @@ import CartContainer from "./CartContainer";
 
 
 const MainContainer = () => {
-  const [{ foodItems, cartShow }, dispatch] = useStateValue();
+  const [{ materialItems, cartShow }, dispatch] = useStateValue();
   const [scrollValue, setScrollValue] = useState(0);
 
   useEffect(() => {}, [scrollValue, cartShow]);
@@ -28,7 +28,7 @@ const MainContainer = () => {
         <RowContainer
          
        
-          data={foodItems}
+          data={materialItems}
         />
       </section>
 

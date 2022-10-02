@@ -118,3 +118,5 @@ const CartContainer = () => {
 };
 
 export default CartContainer;
+
+//db.collection('materialItems').doc('Value').update({quantity: quantity-qty})

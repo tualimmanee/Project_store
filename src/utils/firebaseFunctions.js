@@ -10,15 +10,15 @@ import {
   
   // Saving new Item
   export const saveItem = async (data) => {
-    await setDoc(doc(firestore, "foodItems", `${Date.now()}`), data, {
+    await setDoc(doc(firestore, "materialItems", `${Date.now()}`), data, {
       merge: true,
     });
   };
   
-  // getall food items
-  export const getAllFoodItems = async () => {
+  // getall material items
+  export const getAllMaterialItems = async () => {
     const items = await getDocs(
-      query(collection(firestore, "foodItems"), orderBy("id", "desc"))
+      query(collection(firestore, "materialItems"), orderBy("id", "desc"))
     );
   
     return items.docs.map((doc) => doc.data());

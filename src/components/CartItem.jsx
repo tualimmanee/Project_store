@@ -4,21 +4,24 @@ import { motion } from "framer-motion";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import { fetchCart } from "../utils/fetchLocalStorageData";
+import math from 'mathjs'
+
 let items = [];
 
 const CartItem = ({ item, setFlag, flag }) => {
   const [{ cartItems }, dispatch] = useStateValue();
   const [qty, setQty] = useState(item.qty);
 
-  const cartDispatch = () => {
+  const cartDispatch = async () => {
     localStorage.setItem("cartItems", JSON.stringify(items));
-    dispatch({
+    await dispatch({
       type: actionType.SET_CARTITEMS,
       cartItems: items,
-    });
-  };
+    })
+    
+    };
 
-  const updateQty = (action, id) => {
+  const updateQty = async (action, id) => {
     if (action == "add") {
       setQty(qty + 1);
       cartItems.map((item) => {
@@ -27,7 +30,14 @@ const CartItem = ({ item, setFlag, flag }) => {
           setFlag(flag + 1);
         }
       });
-      cartDispatch();
+      await cartDispatch();
+      
+      try {
+        checkoutitems()
+      } catch (error) {
+        console.log(error);
+      }
+      
     } else {
       // initial state value is one so you need to check if 1 then remove it
       if (qty == 1) {
@@ -42,7 +52,15 @@ const CartItem = ({ item, setFlag, flag }) => {
             setFlag(flag + 1);
           }
         });
-        cartDispatch();
+       
+        await cartDispatch();
+      
+      try {
+        checkoutitemsremove()
+      } catch (error) {
+        console.log(error);
+      }
+
       }
     }
   };
@@ -50,6 +68,39 @@ const CartItem = ({ item, setFlag, flag }) => {
   useEffect(() => {
     items = cartItems;
   }, [qty, items]);
+
+    
+
+  function checkoutitems(){
+    const num1 = qty+1
+
+    const num2 = item?.quantity
+
+    const num3 = num2-num1;
+
+
+    console.log("นี่คือ num1",num1);
+    console.log("นี่คือ num2",num2);
+    console.log("นี่คือ num3",num3);
+
+  }
+  function checkoutitemsremove(){
+    const num1 = qty-1
+
+    const num2 = item?.quantity
+
+    const num3 = num2-num1;
+
+
+    console.log("นี่คือ num1",num1);
+    console.log("นี่คือ num2",num2);
+    console.log("นี่คือ num3",num3);
+
+  }
+
+
+
+
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
@@ -74,7 +125,8 @@ const CartItem = ({ item, setFlag, flag }) => {
           onClick={() => updateQty("remove", item?.id)}
         >
           <BiMinus className="text-gray-50 " />
-        </motion.div>
+        </motion.div> 
+        
 
         <p className="w-5 h-5 rounded-sm bg-cartBg text-gray-50 flex items-center justify-center">
           {qty}

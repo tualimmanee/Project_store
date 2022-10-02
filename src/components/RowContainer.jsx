@@ -64,6 +64,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
             </div>
 
             <div className="w-full flex flex-col items-end justify-end -mt-8">
+              {/* ชื่อวัสดูแสดง */}
               <p className="text-textColor font-semibold text-base md:text-lg">
                 {item?.title}
               </p>

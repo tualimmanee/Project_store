@@ -11,14 +11,14 @@ import {
   uploadBytesResumable,
 } from "firebase/storage";
 import { storage } from "../firebase.config";
-import { getAllFoodItems, saveItem } from "../utils/firebaseFunctions";
+import { getAllMaterialItems, saveItem } from "../utils/firebaseFunctions";
 import { actionType } from "../context/reducer";
 import { useStateValue } from "../context/StateProvider";
 
 const CreateContainer = () => {
 
     const [title, setTitle] = useState("");
-    // const [calories, setCalories] = useState("");
+    const [checkout, setCheckout] = useState(0);
     const [quantity, setQuantity] = useState("");
     const [category, setCategory] = useState(null);
     const [imageAsset, setImageAsset] = useState(null);
@@ -26,7 +26,7 @@ const CreateContainer = () => {
     const [alertStatus, setAlertStatus] = useState("danger");
     const [msg, setMsg] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
-    const [{ foodItems }, dispatch] = useStateValue();
+    const [{ materialItems }, dispatch] = useStateValue();
 
     const uploadImage = (e) => {
         setIsLoading(true);
@@ -83,7 +83,7 @@ const CreateContainer = () => {
     const saveDetails = () => {
         setIsLoading(true);
         try {
-            if (!title || /*!calories ||*/ !imageAsset || !quantity || !category) {
+            if (!title || !imageAsset || !quantity || !category) {
                 setFields(true);
                 setMsg("Required fields can't be empty");
                 setAlertStatus("danger");
@@ -97,7 +97,7 @@ const CreateContainer = () => {
                     title: title,
                     imageURL: imageAsset,
                     category: category,
-                    // calories: calories,
+                    checkout: checkout,
                     qty: 1,
                     quantity: quantity,
                 };
@@ -134,10 +134,10 @@ const CreateContainer = () => {
     };
 
     const fetchData = async () => {
-        await getAllFoodItems().then((data) => {
+        await getAllMaterialItems().then((data) => {
             dispatch({
-                type: actionType.SET_FOOD_ITEMS,
-                foodItems: data,
+                type: actionType.SET_MATERIAL_ITEMS,
+                materialItems: data,
             });
         });
     };
@@ -173,7 +173,7 @@ const CreateContainer = () => {
                 <div className="w-full">
                     <select
                         onChange={(e) => setCategory(e.target.value)}
-                        className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer bg-white "
+                        className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer bg-primary "
                     >
                         <option value="other" >
                             Select Category
@@ -238,7 +238,7 @@ const CreateContainer = () => {
 
                 <div className="w-full flex flex-col md:flex-row items-center gap-3">
                     {/* <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
-                        <MdFoodBank className="text-gray-700 text-2xl" />
+                        <MdMaterialBank className="text-gray-700 text-2xl" />
                         <input
                             type="text"
                             required

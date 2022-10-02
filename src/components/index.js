@@ -9,3 +9,4 @@ export {default as CartContainer} from "./CartContainer";
 export {default as CartItem} from "./CartItem";
 export {default as MenuSelectDesktop} from "./MenuSelectDesktop";
 export {default as AllItems} from "./AllItems";
+export {default as Checkout} from "./Checkout";
