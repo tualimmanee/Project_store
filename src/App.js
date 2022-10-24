@@ -6,8 +6,32 @@ import { useStateValue } from "./context/StateProvider";
 import { getAllMaterialItems } from "./utils/firebaseFunctions";
 import { actionType } from "./context/reducer";
 
+
+
+import { QuerySnapshot } from "firebase/firestore";
+
 const App = () => {
   const [{ materialItems }, dispatch] = useStateValue();
+
+  // const ref = firebase.firestore().collection("developers")
+
+  // const [data,setdata] = useState([])
+  // const [loader,setloader] = useState(true)
+
+  // function getData(){
+  //   ref.onSnapshot((QuerySnapshot) => {
+  //     const items = []
+  //     QuerySnapshot.forEach((doc) =>{
+  //       items.push(doc.data())
+  //     })
+  //     setdata(items)
+  //     setloader(false)
+  //   })
+  // }
+
+  // useEffect(() => {
+  //   getData()
+  // })
 
   const fetchData = async () => {
     await getAllMaterialItems().then((data) => {

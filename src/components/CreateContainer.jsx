@@ -99,7 +99,7 @@ const CreateContainer = () => {
                     category: category,
                     checkout: checkout,
                     qty: 1,
-                    quantity: quantity,
+                    quantity: Number(quantity),
                 };
                 saveItem(data);
                 setIsLoading(false);

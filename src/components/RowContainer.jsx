@@ -5,6 +5,13 @@ import NotFound from "../img/NotFound.svg";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 
+
+
+
+//  import { db } from "./firebase-config";  
+//  import {collection, getDocs, addDoc, updateDoc ,doc} from "firebser/firestore";
+import EditboxContainer from "./EditboxContainer";
+
 const RowContainer = ({ flag, data, scrollValue }) => {
   const rowContainer = useRef();
 
@@ -20,6 +27,27 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     localStorage.setItem("cartItems", JSON.stringify(items));
   };
 
+
+
+  //Update Item #################################################################################################################################################################
+  // const usersCollectionRef = collection(db,"materialItems");
+
+  // const updateItems = async (id, quantity) =>{
+  //   const userDoc = doc(db, "materialItems", id)
+  //    const newFields = {quantity: quantity + 1}
+  //    await updateDoc(userDoc ,newFields)
+  // }
+  //#############################################################################################################################################################################
+ 
+  
+
+  const [editbox,seteditbox] = useState(false)
+
+
+
+
+
+ 
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
@@ -31,11 +59,10 @@ const RowContainer = ({ flag, data, scrollValue }) => {
   return (
     <div
       ref={rowContainer}
-      className={`w-full flex items-center gap-3  my-12 scroll-smooth  ${
-        flag
+      className={`w-full flex items-center gap-3  my-12 scroll-smooth  ${flag
           ? "overflow-x-scroll scrollbar-none"
           : "overflow-x-hidden flex-wrap justify-center"
-      }`}
+        }`}
     >
       {data && data.length > 0 ? (
         data.map((item) => (
@@ -51,9 +78,38 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                 <img
                   src={item?.imageURL}
                   alt=""
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain rounded-xl"
                 />
               </motion.div>
+
+
+
+
+
+
+
+
+
+         
+
+
+               
+                <div className="flex-row ">
+                  <button className="w-9 h-5 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8" 
+                  onClick={() =>seteditbox(true)}>edit</button>
+                  {editbox === true && <EditboxContainer  seteditbox={seteditbox}/>}
+                </div>
+
+
+
+
+
+
+
+
+
+
+
               <motion.div
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8"
@@ -68,7 +124,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
               <p className="text-textColor font-semibold text-base md:text-lg">
                 {item?.title}
               </p>
-             
+
               <div className="flex items-center gap-8">
                 <p className="text-lg text-headingColor font-semibold">
                   <span className="text-sm text-red-500">Quantity</span> {item?.quantity}
