@@ -133,7 +133,7 @@ const CreateContainer = () => {
         setCategory("Select Category");
     };
 
-    const fetchData = async () => {
+     const fetchData = async () => {
         await getAllMaterialItems().then((data) => {
             dispatch({
                 type: actionType.SET_MATERIAL_ITEMS,

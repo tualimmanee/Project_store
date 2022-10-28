@@ -8,4 +8,5 @@ export const initialState = {
   materialItems: null,
   cartShow: false,
   cartItems: cartInfo,
+  Rnum3: null,
 };

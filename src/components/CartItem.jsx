@@ -96,6 +96,7 @@ const CartItem = ({ item, setFlag, flag }) => {
     console.log("นี่คือ num2",num2);
     console.log("นี่คือ num3",num3);
 
+
   }
 
 

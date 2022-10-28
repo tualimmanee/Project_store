@@ -8,6 +8,8 @@ import { actionType } from "../context/reducer";
 
 
 
+
+
 //  import { db } from "./firebase-config";  
 //  import {collection, getDocs, addDoc, updateDoc ,doc} from "firebser/firestore";
 import EditboxContainer from "./EditboxContainer";
@@ -56,6 +58,8 @@ const RowContainer = ({ flag, data, scrollValue }) => {
     addtocart();
   }, [items]);
 
+  const user = JSON.parse(localStorage.getItem('user'))
+
   return (
     <div
       ref={rowContainer}
@@ -93,13 +97,13 @@ const RowContainer = ({ flag, data, scrollValue }) => {
          
 
 
-               
+              {user && user.email === "osuzumiyao@gmail.com" && (
                 <div className="flex-row ">
                   <button className="w-9 h-5 rounded-full bg-red-600 flex items-center justify-center cursor-pointer hover:shadow-md -mt-8" 
                   onClick={() =>seteditbox(true)}>edit</button>
-                  {editbox === true && <EditboxContainer  seteditbox={seteditbox}/>}
+                  {editbox === true && <EditboxContainer item={item} seteditbox={seteditbox}/>}
                 </div>
-
+              )}
 
 
 

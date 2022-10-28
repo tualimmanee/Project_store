@@ -8,6 +8,10 @@ import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
 import CartItem from "./CartItem";
 
+import { updateDoc,doc,setDoc } from 'firebase/firestore'
+import {ItemRef,firestore} from '../firebase.config'
+
+
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
   const [flag, setFlag] = useState(1);
@@ -36,6 +40,54 @@ const CartContainer = () => {
 
     localStorage.setItem("cartItems", JSON.stringify([]));
   };
+  
+
+
+
+
+  async function checkout(){
+   await cartItems.forEach(item => {
+      
+    const docRef = doc(firestore,'materialItems',item.id) 
+  
+    const user = JSON.parse(localStorage.getItem('user'))
+
+
+    /* Function From Firebase */ 
+
+
+    updateDoc(docRef,{
+         quantity: item.quantity-item.qty
+     }).then(
+
+      setDoc(doc(firestore, "tradingHistory", `${Date.now()}`), 
+      {
+        buyerName : user.displayName,
+        itemName : item.title,
+        quantity : item.qty,
+        time : Date.now(),
+      }, {
+        merge: true,
+      }),
+    
+         console.log("success")
+     )
+
+    })
+
+    
+   
+    
+    // window.location = "/AllItems"
+    
+
+  }
+
+
+
+
+
+
 
   return (
     <motion.div
@@ -89,15 +141,18 @@ const CartContainer = () => {
             {user ? (
               <motion.button
                 whileTap={{ scale: 0.8 }}
-                type="button"
+                type="submit"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+                
+                
+                onClick={checkout}
               >
                 Check Out
               </motion.button>
             ) : (
               <motion.button
                 whileTap={{ scale: 0.8 }}
-                type="button"
+                type="submit"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400 to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
               >
                 Login to check out

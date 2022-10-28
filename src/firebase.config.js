@@ -1,6 +1,7 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDkZdpbaDo0PchZz5gEVT5SJFdvdzLWVR4",
@@ -16,5 +17,9 @@ const app = getApp.length > 0 ? getApp() : initializeApp(firebaseConfig);
 
 const firestore = getFirestore(app);
 const storage = getStorage(app);
+const ItemRef = collection(firestore,'materialItems');
 
-export { app, firestore , storage };
+
+
+
+export { app, firestore , storage ,ItemRef };

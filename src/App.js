@@ -1,19 +1,15 @@
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { CreateContainer, Header, MainContainer,MenuSelectDesktop,AllItems} from "./components";
+import { CreateContainer, Header, MainContainer,MenuSelectDesktop,AllItems,Checkout} from "./components";
 import { useStateValue } from "./context/StateProvider";
 import { getAllMaterialItems } from "./utils/firebaseFunctions";
 import { actionType } from "./context/reducer";
-
-
-
-import { QuerySnapshot } from "firebase/firestore";
+import {ItemRef} from './firebase.config'
+// import  firebase  from "firebase/firestore";
 
 const App = () => {
   const [{ materialItems }, dispatch] = useStateValue();
-
-  // const ref = firebase.firestore().collection("developers")
 
   // const [data,setdata] = useState([])
   // const [loader,setloader] = useState(true)
@@ -40,11 +36,20 @@ const App = () => {
         materialItems: data,
       });
     });
+    // dispatch({
+    //   type: actionType.SET_MATERIAL_ITEMS,
+    //   materialItems: data,
+    // });
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+    console.log("################Firestore##############",ItemRef)
+  }, []
+  
+  );
+
+ 
 
   return (
     <AnimatePresence exitBeforeEnter>
@@ -58,6 +63,7 @@ const App = () => {
           <Route path="/createItem" element={<CreateContainer />} />
           <Route path="/MenuSelectDesktop" element={<MenuSelectDesktop/>} />
           <Route path="/AllItems" element={<AllItems/>} />
+          <Route path="/Checkout" element={<Checkout/>} />
         </Routes>
       </main>
     </div>
