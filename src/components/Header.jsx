@@ -93,9 +93,12 @@ const Header = () => {
 
 
 
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer" onClick={() => setIsMenu(false)}>
-              Service
-            </li>
+            <Link to={"/Checkout"} >
+              <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer" onClick={() => setIsMenu(false)}>
+                Schedule
+              </li>
+            </Link>
+
           </motion.ul>
 
           <div
@@ -125,7 +128,7 @@ const Header = () => {
                 initial={{ opacity: 0, scale: 0.6 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.6 }}
-                className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
+                className="w-150 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
               >
                 {user && user.email === "osuzumiyao@gmail.com" && (
                   <Link to={"/createItem"}>
@@ -184,7 +187,7 @@ const Header = () => {
               initial={{ opacity: 0, scale: 0.6 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.6 }}
-              className="w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
+              className="w-150 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0"
             >
               {user && user.email === "osuzumiyao@gmail.com" && (
                 <Link to={"/createItem"}>
@@ -217,7 +220,7 @@ const Header = () => {
                   className="text-base text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer hover:bg-slate-100 px-4 py-2"
                   onClick={() => setIsMenu(false)}
                 >
-                  Service
+                  Schedule
                 </li>
               </ul>
 

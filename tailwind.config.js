@@ -6,6 +6,11 @@ module.exports = {
   theme: {
     extend: {
       width: {
+        40: "40px",
+        80: "80px",
+        100: "100px",
+        120: "120px",
+        130: "130px",
         150: "150px",
         190: "190px",
         225: "225px",
@@ -14,13 +19,17 @@ module.exports = {
         340: "340px",
         350: "350px",
         375: "375px",
+        420: "420px",
         460: "460px",
         656: "656px",
         880: "880px",
         508: "508px",
       },
       height: {
+        40: "40px",
         80: "80px",
+        120: "120px",
+        130: "130px",
         150: "150px",
         225: "225px",
         300: "300px",
@@ -59,7 +68,29 @@ module.exports = {
         cartTotal: "#343739",
         rowBG: "rgba(255,131,0,0.2)",
       },
+      fontSize: {
+        sm: ['15px', '19px'],
+        base: ['16px', '24px'],
+        lg: ['20px', '28px'],
+        xl: ['24px', '32px'],
+      },
+      spacing: {
+        '10px': '10px',
+      },
+      borderWidth: {
+        DEFAULT: '1px',
+        '0': '0',
+        '2': '2px',
+        '3': '3px',
+        '4': '4px',
+        '6': '6px',
+        '8': '8px',
+        '19': '19px',
+      }
+      
+      
     },
+    
     plugins: [
       require("tailwind-scrollbar"),
     ],

@@ -18,7 +18,7 @@ import { useStateValue } from "../context/StateProvider";
 const CreateContainer = () => {
 
     const [title, setTitle] = useState("");
-    const [checkout, setCheckout] = useState(0);
+    const [info, setInfo] = useState("");
     const [quantity, setQuantity] = useState("");
     const [category, setCategory] = useState(null);
     const [imageAsset, setImageAsset] = useState(null);
@@ -83,7 +83,7 @@ const CreateContainer = () => {
     const saveDetails = () => {
         setIsLoading(true);
         try {
-            if (!title || !imageAsset || !quantity || !category) {
+            if (!title || !imageAsset || !quantity || !category || !info) {
                 setFields(true);
                 setMsg("Required fields can't be empty");
                 setAlertStatus("danger");
@@ -97,7 +97,7 @@ const CreateContainer = () => {
                     title: title,
                     imageURL: imageAsset,
                     category: category,
-                    checkout: checkout,
+                    info: info,
                     qty: 1,
                     quantity: Number(quantity),
                 };
@@ -128,7 +128,7 @@ const CreateContainer = () => {
     const clearData = () => {
         setTitle("");
         setImageAsset(null);
-        // setCalories("");
+        setInfo("");
         setQuantity("");
         setCategory("Select Category");
     };
@@ -168,12 +168,13 @@ const CreateContainer = () => {
                         placeholder="Please specify the name of the material."
                         className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
                     />
+                    
                 </div>
 
                 <div className="w-full">
                     <select
                         onChange={(e) => setCategory(e.target.value)}
-                        className="outline-none w-full text-base border-b-2 border-gray-200 p-2 rounded-md cursor-pointer bg-primary "
+                        className="outline-none w-full text-base border-b-2  p-2 rounded-md cursor-pointer bg-primary border-gray-200"
                     >
                         <option value="other" >
                             Select Category
@@ -237,17 +238,17 @@ const CreateContainer = () => {
                 </div>
 
                 <div className="w-full flex flex-col md:flex-row items-center gap-3">
-                    {/* <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
-                        <MdMaterialBank className="text-gray-700 text-2xl" />
+                    <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
+                        <MdDashboardCustomize className="text-gray-700 text-2xl" />
                         <input
                             type="text"
                             required
-                            value={calories}
-                            onChange={(e) => setCalories(e.target.value)}
-                            placeholder="Calories"
+                            value={info}
+                            onChange={(e) => setInfo(e.target.value)}
+                            placeholder="Info"
                             className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
                         />
-                    </div> */}
+                    </div>
 
                     <div className="w-full py-2 border-b border-gray-300 flex items-center gap-2">
                         <MdDashboardCustomize className="text-gray-700 text-2xl" />

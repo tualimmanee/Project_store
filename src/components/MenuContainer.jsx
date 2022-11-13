@@ -32,7 +32,7 @@ const MenuContainer = () => {
                   className={`w-10 h-10 rounded-full shadow-lg ${
                     filter === category.urlParamName
                       ? "bg-white"
-                      : "bg-cartNumBg"
+                      : "bg-red-500"
                   } group-hover:bg-white flex items-center justify-center`}
                 >
                   <IoCog

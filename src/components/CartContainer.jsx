@@ -63,8 +63,10 @@ const CartContainer = () => {
       setDoc(doc(firestore, "tradingHistory", `${Date.now()}`), 
       {
         buyerName : user.displayName,
+        buyerProfile : user.photoURL,
         itemName : item.title,
         quantity : item.qty,
+        info : item.info,
         time : Date.now(),
       }, {
         merge: true,

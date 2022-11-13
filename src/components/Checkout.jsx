@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { collection, getDocs } from 'firebase/firestore'
 import { firestore } from '../firebase.config'
-import {Table} from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import { render } from "@testing-library/react";
+
+
 
 export const Checkout = () => {
 
@@ -24,69 +27,83 @@ export const Checkout = () => {
           id: doc.id,
         }))
         setHistory(history)
+
       })
       .catch(error => console.log(error.message))
+
   }
 
-  const num1 = 0;
-  //   {tradingHistory.map(item => (
-    // <tr key={item.id}>{item.data.buyerName}</tr>
-
-    // ))}
   return (
+    <div >
+      <p className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100">
+      Schedule
+      </p>
+      <div ><p className="text-white">.</p></div>
+      <div><p className="text-white">.</p></div>
 
-    <div className=" center  ">
-      <p className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content before:w-32 before:h-1 before:-bottom-2 before:left-0 before:bg-gradient-to-tr from-orange-400 to-orange-600 transition-all ease-in-out duration-100">Checkout</p>
-      <div >
-      <table className="border-separate border border-slate-400 rounded-xl w-auto h-auto  items-center justify-center ">
-        <thead>
-          <tr className="border-separate border border-slate-400 text-2xl font-semibold capitalize text-headingColor rounded-xl w-auto">
-            <th className="border-separate border border-slate-400 rounded-xl">Name</th>
-            <th className="border-separate border border-slate-400 rounded-xl">itemName</th>
-            <th className="border-separate border border-slate-400 rounded-xl">quantity</th>
-            <th className="border-separate border border-slate-400 rounded-xl">information</th>                
+
+
+      <Table className=" border-4 border-r-4 border-pink-500 item-center w-full bg-white drop-shadow-2xl rounded-lg" >
+        <tr >
+          <th className="bg-orange-400 font-semibold border-r-4 border-pink-500 ">Profile</th>
+          <th className="bg-orange-200 font-semibold border-r-4 border-pink-500">Name</th>
+          <th className="bg-amber-300 font-semibold border-r-4 border-pink-500">Item</th>
+          <th className="bg-lime-300 font-semibold border-r-4 border-pink-500">qty</th>
+          <th className="bg-green-300 font-semibold border-r-4 border-pink-500">Information</th>
+          <th className="bg-cyan-300 font-semibold">Order id</th>
+        </tr>
+        {
+          <tr className="border-pink-500 text-lg border-4" >
+
+            <td className=" border-t-4 border-r-4 border-pink-500  w-10 ">
+              {tradingHistory.map(item => (
+                <tr className="border-b-4  border-pink-500"><img src={item.data.buyerProfile}/></tr>
+              ))}
+            </td>
+
+            <td className="px-20  border-pink-500  w-420 divide-y-19 divide-white border-4">
+              {tradingHistory.map(item => (
+                <tr className="text-center   border-pink-500">{item.data.buyerName}</tr>
+              ))}
+            </td>
+
+            <td className=" px-5 border-t-4 border-r-4 border-pink-500 divide-y-19 divide-white ">
+              {tradingHistory.map(item => (
+                <tr className="text-center">{item.data.itemName}</tr>
+              ))}
+            </td>
+
+            <td className="px-8 border-t-4 border-r-4 border-pink-500 w-5 divide-y-19 divide-white">
+              {tradingHistory.map(item => (
+                <tr className="text-center">{item.data.quantity}</tr>
+              ))}
+            </td>
+
+            <td className="px-5 border-t-4 border-r-4 border-pink-500  divide-y-19 divide-white">
+              {tradingHistory.map(item => (
+                <tr className="text-center">{item.data.info}</tr>
+              ))}
+            </td>
+
+            <td className="px-5 border-t-4 border-pink-500 w-10 divide-y-19 divide-white">
+              {tradingHistory.map(item => (
+                <tr className="text-center">{`${item.data.time}`}</tr>
+              ))}
+
+            </td>
           </tr>
-        </thead>
-        
-        <tbody className="border-separate border border-slate-400 text-xl font-semibold capitalize text-headingColor items-center ">
-
-          
-
-          <td className="border-separate border border-slate-400 text-xl font-semibold capitalize text-headingColor items-center rounded-xl">
-          {tradingHistory.map(item => (
-           <tr key={item.id}>{item.data.buyerName}</tr>
-           ))}
-          </td>
+        }
+      </Table>
 
 
-          <td className="border-separate border border-slate-400 text-xl font-semibold capitalize text-headingColor items-center rounded-xl">
-          {tradingHistory.map(item => (
-           <tr key={item.id}>{item.data.itemName}</tr>
-           ))}
-          </td>
-
-          <td className="border-separate border border-slate-400 text-xl font-semibold capitalize text-headingColor items-center rounded-xl">
-          {tradingHistory.map(item => (
-           <tr className="items-center " key={item.id}>{item.data.quantity}</tr>
-           ))}
-          </td>       
-
-          <td className="border-separate border border-slate-400 text-xl font-semibold capitalize text-headingColor items-center rounded-xl">
-          {tradingHistory.map(item => (
-           <tr className="items-center " key={item.id} >{item.data.info}</tr>
-           ))}
-          </td>     
-
-
-        </tbody>
-        
-      </table>
-      </div>
-      
 
 
     </div>
-  )
+  );
+
+
+
+
 };
 
 export default Checkout;

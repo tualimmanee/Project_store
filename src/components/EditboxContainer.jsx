@@ -27,14 +27,14 @@ function EditboxContainer({item,seteditbox}) {
 
 
     return (
-        <div>
-            <p>editbox</p>
-            <input type="number" placeholder="quantity" onChange={(e) => setQuantity(e.target.value)} />
+        <div className="flex flex-row">
+           
+            <input type="number" placeholder="quantity" className="bg-primary border-gray-200 w-80" onChange={(e) => setQuantity(e.target.value)} />
             <button onClick={() => {
                 editDoc({quantity: quantity ,id:item.id})
                 seteditbox(false)
                 // window.location = "/AllItems"
-            }}>update</button>
+            }} className="bg-red-600 rounded-lg text-white ">update</button>
         </div>
     )
 }
