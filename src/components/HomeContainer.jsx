@@ -33,7 +33,16 @@ export const HomeContainer = () => {
         />
         
         
+        
       </div>
+      <div ><p className="text-white">.</p></div>
+      <div><p className="text-white">.</p></div>
+      <div ><p className="text-white">.</p></div>
+      <div><p className="text-white">.</p></div>
+      <div ><p className="text-white">.</p></div>
+      <div><p className="text-white">.</p></div>
+      
+      
 
     </section>
   )

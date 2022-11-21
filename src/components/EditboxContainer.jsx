@@ -1,9 +1,8 @@
 import React,{useState} from 'react'
-// import { ref } from "firebase/storage"
+import { motion } from "framer-motion";
 import {ItemRef,firestore} from '../firebase.config'
 import { updateDoc,doc } from 'firebase/firestore'
-import {getAllMaterialItems} from '../utils/firebaseFunctions'
-import {actionType} from '../context/reducer'
+
 function EditboxContainer({item,seteditbox}) {
 
     const [quantity, setQuantity] = useState("");
@@ -30,11 +29,16 @@ function EditboxContainer({item,seteditbox}) {
         <div className="flex flex-row">
            
             <input type="number" placeholder="quantity" className="bg-primary border-gray-200 w-80" onChange={(e) => setQuantity(e.target.value)} />
-            <button onClick={() => {
+            <motion.div 
+            whileTap={{ scale: 0.75 }}
+            onClick={() => {
+                
                 editDoc({quantity: quantity ,id:item.id})
                 seteditbox(false)
                 // window.location = "/AllItems"
-            }} className="bg-red-600 rounded-lg text-white ">update</button>
+            }
+            
+            } className="bg-red-600 rounded-lg text-white cursor-pointer">update</motion.div>
         </div>
     )
 }

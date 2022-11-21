@@ -55,7 +55,7 @@ const CreateContainer = () => {
                     setImageAsset(downloadURL);
                     setIsLoading(false);
                     setFields(true);
-                    setMsg("Image uploaded successfully 😊");
+                    setMsg("Image uploaded successfully");
                     setAlertStatus("success");
                     setTimeout(() => {
                         setFields(false);
@@ -72,7 +72,7 @@ const CreateContainer = () => {
             setImageAsset(null);
             setIsLoading(false);
             setFields(true);
-            setMsg("Image deleted successfully 😊");
+            setMsg("Image deleted successfully");
             setAlertStatus("success");
             setTimeout(() => {
                 setFields(false);
@@ -104,7 +104,7 @@ const CreateContainer = () => {
                 saveItem(data);
                 setIsLoading(false);
                 setFields(true);
-                setMsg("Data Uploaded successfully 😊");
+                setMsg("Data Uploaded successfully");
                 setAlertStatus("success");
                 setTimeout(() => {
                     setFields(false);
@@ -114,7 +114,7 @@ const CreateContainer = () => {
         } catch (error) {
             console.log(error);
             setFields(true);
-            setMsg("Error while uploading : Try AGain 🙇");
+            setMsg("Error while uploading : Try AGain");
             setAlertStatus("danger");
             setTimeout(() => {
                 setFields(false);

@@ -6,28 +6,11 @@ import { useStateValue } from "./context/StateProvider";
 import { getAllMaterialItems } from "./utils/firebaseFunctions";
 import { actionType } from "./context/reducer";
 import {ItemRef} from './firebase.config'
+
 // import  firebase  from "firebase/firestore";
 
 const App = () => {
   const [{ materialItems }, dispatch] = useStateValue();
-
-  // const [data,setdata] = useState([])
-  // const [loader,setloader] = useState(true)
-
-  // function getData(){
-  //   ref.onSnapshot((QuerySnapshot) => {
-  //     const items = []
-  //     QuerySnapshot.forEach((doc) =>{
-  //       items.push(doc.data())
-  //     })
-  //     setdata(items)
-  //     setloader(false)
-  //   })
-  // }
-
-  // useEffect(() => {
-  //   getData()
-  // })
 
   const fetchData = async () => {
     await getAllMaterialItems().then((data) => {
@@ -36,10 +19,6 @@ const App = () => {
         materialItems: data,
       });
     });
-    // dispatch({
-    //   type: actionType.SET_MATERIAL_ITEMS,
-    //   materialItems: data,
-    // });
   };
 
   useEffect(() => {
@@ -54,7 +33,7 @@ const App = () => {
   return (
     <AnimatePresence exitBeforeEnter>
 
-    <div className="w-screen h-screen flex flex-col bg-primary">
+    <div className="w-screen h-full flex flex-col bg-primary">
       <Header />
 
       <main className="mt-14 md:mt-20 px-4 md:px-16 py-10 w-full ">

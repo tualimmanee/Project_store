@@ -63,6 +63,7 @@ const CartContainer = () => {
       setDoc(doc(firestore, "tradingHistory", `${Date.now()}`), 
       {
         buyerName : user.displayName,
+        buyerEmail : user.email,
         buyerProfile : user.photoURL,
         itemName : item.title,
         quantity : item.qty,
@@ -77,9 +78,6 @@ const CartContainer = () => {
 
     })
 
-    
-   
-    
     // window.location = "/AllItems"
     
 
@@ -139,7 +137,7 @@ const CartContainer = () => {
                 {tot}
               </p>
             </div>
-
+             {/* user.email === "osuzumiyao@gmail.com"||"varuttete30@gmail.com" */}
             {user ? (
               <motion.button
                 whileTap={{ scale: 0.8 }}

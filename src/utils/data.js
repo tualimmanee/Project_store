@@ -26,20 +26,20 @@ export const categories = [
     },
     {
       id: 6,
-      name: "Nails",
-      urlParamName: "nails",
+      name: "Nails & Nuts",
+      urlParamName: "nails & nuts",
     },
   
     {
       id: 7,
-      name: "Nuts",
-      urlParamName: "nuts",
+      name: "Brick",
+      urlParamName: "brick",
     },
 
     {
       id: 8,
-      name: "Sanitary",
-      urlParamName: "sanitary",
+      name: "Safety",
+      urlParamName: "safety",
     },
 
     {
@@ -56,8 +56,8 @@ export const categories = [
 
     {
       id: 11,
-      name: "Tape",
-      urlParamName: "tape",
+      name: "Stairs",
+      urlParamName: "stairs",
     },
 
   ];

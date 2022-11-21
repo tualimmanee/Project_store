@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        40: "40px",
+        20: "20px",
         80: "80px",
         100: "100px",
         120: "120px",
@@ -14,7 +14,7 @@ module.exports = {
         150: "150px",
         190: "190px",
         225: "225px",
-        275: "275px",
+        250: "250px",
         300: "300px",
         340: "340px",
         350: "350px",
@@ -67,6 +67,7 @@ module.exports = {
         cartItem: "#2e3033",
         cartTotal: "#343739",
         rowBG: "rgba(255,131,0,0.2)",
+        borderCL: "#bce3db"
       },
       fontSize: {
         sm: ['15px', '19px'],
